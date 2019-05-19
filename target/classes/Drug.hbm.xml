@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    <hibernate-mapping>
+    <class name="com.krs.realtimeproject.Drug" table="Drugs">
+    <id name="id" >
+    <generator class="increment"></generator>
+    </id>
+    <property name="dname" column="Drug_name"></property>
+    <property name="price" column="Drug_price"></property>
+    <property name="dmfg" column="Date_of_manufacture"></property>
+    <property name="dexp" column="Date_of_Expiry"></property>
+    </class>
+    
+    <class name="com.krs.realtimeproject.Register" table="Register">
+    <id name="ref" >
+    <generator class="increment"></generator>
+    </id>
+    <property name="fname" column="Full_name"></property>
+    <property name="dob" column="Dob"></property>
+    <property name="username" column="Username"></property>
+    <property name="pass" column="password"></property>
+    <property name="phone" column="Phone"></property>
+    <property name="reason" column="Reason"></property>
+    </class>
+    </hibernate-mapping>
