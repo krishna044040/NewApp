@@ -79,7 +79,7 @@ function showupdatebutton() {
 <td>ID</td><td><input type="text" name="idno_" id="idno" value="${Drugvalue.getId()}"/></td><td>Date Of Mfg.</td><td><input type="Date" name="dmfg_" id="dmfg" value="${Drugvalue.getDmfg()}"/></td></tr>
 <tr><td>Name</td><td><input type="text" name="dname_" id="drname" value="${Drugvalue.getDname()}"/></td><td>Date Of Exp.</td><td><input type="Date" name="dexp_" id="dexp" value="${Drugvalue.getDexp()}"/></td></tr>
 <tr><td>Price</td><td><input type="text" name="dprice_" id="dprice" value="${Drugvalue.getPrice()}"/></td></tr>
-<tr><td>&nbsp</td><td><input  style="align-self: center;" type="submit" class="button" value="Update the value"/></td><td></td>
+<tr><td>&nbsp</td><td><input  style="align-self: center;" type="submit" class="button" value="Update the Value"/></td><td></td>
 </tr></table>
 </form>
 <font color="green" size="5"> ${success}</font>
