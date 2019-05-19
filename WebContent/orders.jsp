@@ -47,7 +47,7 @@ function enabledelete(){
 				<tr><td><li></li><td><input  type="radio" name="id" value="${listValue.getId()}" /></td><td>${listValue.getId()}</td><td>${listValue.getDname()}</td><td>${listValue.getPrice()}</td><td>${listValue.getDmfg()} </td></li></tr>
 			</c:forEach>
 			</table>
-			<input id="deleteButton" class="button" type="submit" value="delete it"/>
+			<input id="deleteButton" class="button" type="submit" value="Delete"/>
 </form>			
 <a href="http://localhost:9997/Realtimeprg/ProductForm.jsp" class="button">Order more</a>			
 <a href="delete.krs" class="button">Update</a><br>
