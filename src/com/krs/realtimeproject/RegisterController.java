@@ -57,12 +57,12 @@ public class RegisterController {
 			String status=sms.sendSms(username, phone, pass);
 			log.debug("sms-status"+status);
 			sf.close();
-			return "Register";
+			return "ProductForm";
 			}
 			else {
 			transaction.rollback();
 			sf.close();
-			return "Register";
+			return "ProductForm";
 			}
 		
 		
@@ -84,12 +84,12 @@ public class RegisterController {
 			if(pass.equals(reg.getPass())) {
 				map.addAttribute("sucessmsg", "Login Sucessful");
 				sf.close();
-				return "Login";
+				return "ProductForm";
 			}
 			}
 		map.addAttribute("errormsg", "Login Failed:Username or password did not match");
 		sf.close();
-		return "Login";
+		return "ProductForm";
 			
 	}
 }

@@ -93,4 +93,56 @@ public String deleteDrug(HttpServletRequest req,ModelMap map) {
 		return "orders";
 }	
 	
+	@RequestMapping(value="/update",method=RequestMethod.GET)
+public String updateDrug(ModelMap map,HttpServletRequest req) {
+		int id=Integer.parseInt(req.getParameter("idno_"));
+		String brand=req.getParameter("dname_");
+		int price=Integer.valueOf(req.getParameter("dprice_"));
+		String d1=req.getParameter("dmfg_");
+		String d2=req.getParameter("dexp_");
+		SessionFactory sf=HibHelp.getSessionFactory();
+		Session ss=sf.openSession();
+		Transaction tr=ss.beginTransaction();
+		Drug dr=new Drug();
+		dr.setId(id);
+		dr.setDname(brand);
+		dr.setPrice(price);
+		dr.setDmfg(d1);
+		dr.setDexp(d2);
+		ss.update(dr);
+/*		Query qr=ss.createQuery("update Drug d set d.Drug_name=?,d.Drug_price=?,d.Date_of_manufacture=?,d.Date_of_Expiry=? where d.id=?");
+		qr.setString(0, brand);
+		qr.setInteger(1, price);
+		qr.setString(2, d1);
+		qr.setString(3, d2);
+		qr.setInteger(4, id);*/
+//		int st=qr.executeUpdate();
+		tr.commit();
+		if(dr!=null) {
+			map.addAttribute("success","Updated successfully");
+			
+		}
+		ss.close();
+		sf.close();
+		showDrug(map);
+		return "orders";
+}
+	
+	@RequestMapping(value="/populate",method=RequestMethod.GET)
+public String populateDrug(ModelMap map,HttpServletRequest req) {
+	int t=	Integer.parseInt(req.getParameter("drugId"));
+		System.out.println(t);
+		List drg=new ArrayList();
+		SessionFactory sf=HibHelp.getSessionFactory();
+		Session ss=sf.openSession();
+		Query qr=ss.createQuery("from Drug d where d.id=?");
+		qr.setInteger(0, t);
+		Drug drug=(Drug)qr.uniqueResult();
+		map.addAttribute("Drugvalue", drug);
+		ss.close();
+		sf.close();
+		showDrug(map);
+		return "orders";
+}	
+	
 }

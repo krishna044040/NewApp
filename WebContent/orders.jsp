@@ -27,6 +27,21 @@ function enabledelete(){
 	document.getElementById("deleteButton").style.color='green';
 	}
 
+function populateData(){
+	var	id=document.querySelector('input[name="id"]:checked').value;
+	document.getElementById("idno").value=id;
+	document.getElementById("popdata").href="populate.krs?drugId="+id;
+	showupdatebutton();
+}
+
+function showupdatebutton() {
+	var val =document.getElementById("drname").value;
+	if(val==""){
+		document.getElementById("updateForm").style.display="none";
+		}else{
+			document.getElementById("updateForm").style.display="block";
+		}
+}
 </script>
 </head>
 <body>
@@ -40,19 +55,34 @@ function enabledelete(){
 </table>
 </div>
 <div class="basic">
-<a href="show.krs">Show all drugs</a><br>
-<form action="del.krs" method="post" onchange="enabledelete();">
+<a href="show.krs" class="button">Show all drugs</a><br>
+<form action="del.krs" method="post" onchange="enabledelete();" id="formdata">
 <c:forEach var="listValue" items="${values}">
 				<table>
-				<tr><td><li></li><td><input  type="radio" name="id" value="${listValue.getId()}" /></td><td>${listValue.getId()}</td><td>${listValue.getDname()}</td><td>${listValue.getPrice()}</td><td>${listValue.getDmfg()} </td></li></tr>
+				<tr><td><li></li><td><input  type="radio" name="id" value="${listValue.getId()}" /></td>
+				<td>${listValue.getId()}</td>
+				<td>${listValue.getDname()}</td>
+				<td>${listValue.getPrice()}</td>
+				<td>${listValue.getDexp()} </td>
+				<td>${listValue.getDmfg()} </td>
+				</li></tr>
 			</c:forEach>
 			</table>
 			<input id="deleteButton" class="button" type="submit" value="Delete"/>
 </form>			
 <a href="http://localhost:9997/Realtimeprg/ProductForm.jsp" class="button">Order more</a>			
-<a href="delete.krs" class="button">Update</a><br>
-<a href="#"  class="button">Edit</a><br>
-</div>
+<a  class="button" onclick="populateData();" id="popdata">Update</a><br>
+<a href="#" onclick="showupdatebutton();" class="button">Hide/Show Form</a><br>
 
+<form action="update.krs" id="updateForm">
+<table class="tab" ><tr>
+<td>ID</td><td><input type="text" name="idno_" id="idno" value="${Drugvalue.getId()}"/></td><td>Date Of Mfg.</td><td><input type="Date" name="dmfg_" id="dmfg" value="${Drugvalue.getDmfg()}"/></td></tr>
+<tr><td>Name</td><td><input type="text" name="dname_" id="drname" value="${Drugvalue.getDname()}"/></td><td>Date Of Exp.</td><td><input type="Date" name="dexp_" id="dexp" value="${Drugvalue.getDexp()}"/></td></tr>
+<tr><td>Price</td><td><input type="text" name="dprice_" id="dprice" value="${Drugvalue.getPrice()}"/></td></tr>
+<tr><td>&nbsp</td><td><input  style="align-self: center;" type="submit" class="button" value="Update the value"/></td><td></td>
+</tr></table>
+</form>
+<font color="green" size="5"> ${success}</font>
+</div>
 </body>
 </html>
